@@ -6,7 +6,7 @@ public class Arbre {
     /**
      * constructeur
      */
-    public Arbre (){
+    public Arbre() {
         this.noeuds = new ArrayList<Arbre>();
     }
 
@@ -17,11 +17,47 @@ public class Arbre {
         return noeuds;
     }
 
-   /*  il va falloir creer notre propre split je pense
-   public void create_arbre (ARN arn){
-        String a = arn.getAppariement().split("(");
-        for (int i = 0; i< a.length(); i++){
+    /*  il va falloir creer notre propre split je pense*/
+    public void create_arbre(String arn) {
+        String a = arn;
+
+        while (a.length() > 0) {
+
+            if (a.charAt(0) == '-') {
+                this.noeuds.add(new Arbre());
+                a = a.replaceFirst(String.valueOf(a.charAt(0)), "");
+            }
+            if (a.charAt(0) == '(') {
+                int cpt = 1;
+                a = a.replaceFirst("(", "");
+                String s = "(";
+                while (cpt != 0) {
+                    if (a.charAt(0) == '(') {
+                        s += '(';
+                        a = a.replaceFirst(String.valueOf(a.charAt(0)), "");
+                        cpt++;
+                    }
+                    if (a.charAt(0) == ')') {
+                        s += ')';
+                        a = a.replaceFirst(String.valueOf(a.charAt(0)), "");
+                        cpt--;
+                    }
+                    if (a.charAt(0) == '-') {
+                        s += '-';
+                        a = a.replaceFirst(String.valueOf(a.charAt(0)), "");
+                    }
+                }
+                Arbre A = new Arbre();
+                A.create_arbre(s);
+                this.noeuds.add(A);
+            }
+            if (a.charAt(0) == ')') {
+                a = a.replaceFirst(String.valueOf(a.charAt(0)), "");
+
+            }
 
         }
-    }*/
+    }
+
+
 }
