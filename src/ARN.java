@@ -13,6 +13,7 @@ public class ARN extends Affichage{
         this.sequence = s;
     }
 
+
     public String getAppariement() {
         return appariement;
     }

@@ -19,44 +19,51 @@ public class Arbre {
 
     /*  il va falloir creer notre propre split je pense*/
     public void create_arbre(String arn) {
-        String a = arn;
-
+        String a = (String) arn;
         while (a.length() > 0) {
-
             if (a.charAt(0) == '-') {
                 this.noeuds.add(new Arbre());
                 a = a.replaceFirst(String.valueOf(a.charAt(0)), "");
             }
-            if (a.charAt(0) == '(') {
+            else if (a.charAt(0) == '(') {
                 int cpt = 1;
-                a = a.replaceFirst("(", "");
-                String s = "(";
-                while (cpt != 0) {
+                a = a.replaceFirst("\\(", "");
+                String s = "";
+                while (cpt > 0 || a.length() > 0) {
+                    System.out.println(cpt);
                     if (a.charAt(0) == '(') {
                         s += '(';
-                        a = a.replaceFirst(String.valueOf(a.charAt(0)), "");
+                        a = a.replaceFirst("\\(", "");
                         cpt++;
                     }
-                    if (a.charAt(0) == ')') {
-                        s += ')';
-                        a = a.replaceFirst(String.valueOf(a.charAt(0)), "");
+                    else if (a.charAt(0) == ')') {
                         cpt--;
+                        if (cpt != 0) {
+                            s += ')';
+                        }
+                        a = a.replaceFirst("\\)", "");
                     }
-                    if (a.charAt(0) == '-') {
+                    else if (a.charAt(0) == '-') {
                         s += '-';
                         a = a.replaceFirst(String.valueOf(a.charAt(0)), "");
                     }
+
                 }
                 Arbre A = new Arbre();
-                A.create_arbre(s);
-                this.noeuds.add(A);
+                System.out.println(s);
+                if (s.equals("")){
+                    this.noeuds.add(A);
+                }else {
+                    A.create_arbre(s);
+                    this.noeuds.add(A);
+                }
             }
-            if (a.charAt(0) == ')') {
-                a = a.replaceFirst(String.valueOf(a.charAt(0)), "");
+            else if (a.charAt(0) == ')') {
+                a = a.replaceFirst("\\)", "");
 
             }
-
         }
+
     }
 
 

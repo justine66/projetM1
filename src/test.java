@@ -5,12 +5,14 @@ public class test {
         ARN arn2 = new ARN("AAAU", "(--)");
         ARN arn3 = new ARN("AAAU", "-(-)");
 
-        Arbre A = new Arbre();
-        A.create_arbre(arn1.getAppariement());
-        System.out.println(A);
-        String a = "aaa";
-        a = a.replaceFirst(String.valueOf(a.charAt(0)), "");
-        System.out.println(a.charAt(0));
+        Arbre A1 = new Arbre();
+        A1.create_arbre(arn1.getAppariement());
+        Arbre A2 = new Arbre();
+        A2.create_arbre(arn2.getAppariement());
+        Arbre A3 = new Arbre();
+        A3.create_arbre(arn3.getAppariement());
+        //System.out.println(A3.getNoeuds());
+
 
         /* test de la methode is_appiered(a)*/
         System.out.println(arn1.is_appiered(arn2.getAppariement()));
