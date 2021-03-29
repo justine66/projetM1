@@ -1,4 +1,7 @@
-public class test {
+import java.awt.*;
+import java.awt.Graphics;
+
+public class test  {
 
     public static void main(String[] args) {
         ARN arn1 = new ARN("AAUU", "(())");
@@ -12,7 +15,9 @@ public class test {
         Arbre A3 = new Arbre();
         A3.create_arbre(arn3.getAppariement());
         //System.out.println(A3.getNoeuds());
-
+        Affichage a = new Affichage();
+        //a.paint(a.canvas.getGraphics(), A1, 10,10);
+        a.setVisible(true);
 
         /* test de la methode is_appiered(a)*/
         System.out.println(arn1.is_appiered(arn2.getAppariement()));

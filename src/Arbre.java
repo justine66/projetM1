@@ -67,4 +67,8 @@ public class Arbre {
     }
 
 
+    public boolean isEmpty() {
+        return this.noeuds.isEmpty();
+
+    }
 }
