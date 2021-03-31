@@ -30,7 +30,6 @@ public class Arbre {
                 a = a.replaceFirst("\\(", "");
                 String s = "";
                 while (cpt > 0 || a.length() > 0) {
-                    System.out.println(cpt);
                     if (a.charAt(0) == '(') {
                         s += '(';
                         a = a.replaceFirst("\\(", "");
@@ -50,7 +49,6 @@ public class Arbre {
 
                 }
                 Arbre A = new Arbre();
-                System.out.println(s);
                 if (s.equals("")){
                     this.noeuds.add(A);
                 }else {
