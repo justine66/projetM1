@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Graphics;
+import java.io.File;
 
 public class test  {
     public static void draw(){
@@ -32,14 +33,17 @@ public class test  {
         Arbre A3 = new Arbre();
         A3.create_arbre(arn3.getAppariement());
         //System.out.println(A3.getNoeuds());
-        Affichage a = new Affichage();
+        //Affichage a = new Affichage();
        // a.setVisible(true);
 
 
-        test.draw();
+        //test.draw();
 
+        File F = new File("./Stockholm.txt");
 
+        Parser P = new Parser(F);
 
+        System.out.println(P.string); //on teste pour savoir si ya une tabulation ou un espace avant le string que l'on cherche
 
         /* test de la methode is_appiered(a)*/
         System.out.println(arn1.is_appiered(arn2.getAppariement()));
