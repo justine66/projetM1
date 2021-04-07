@@ -2,9 +2,6 @@
   <library name="java">
     <CLASSES />
     <JAVADOC />
-    <SOURCES>
-      <root url="file://$USER_HOME$/Desktop/COURS/commons-io-2.8.0-src/src/main/java" />
-      <root url="file://$USER_HOME$/Desktop/COURS/commons-io-2.8.0-src/src/test/java" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>

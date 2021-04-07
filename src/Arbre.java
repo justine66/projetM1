@@ -1,28 +1,31 @@
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Arbre {
-    private ArrayList<Arbre> noeuds;
+    private HashMap<Arbre, String> noeuds;
 
     /**
      * constructeur
      */
     public Arbre() {
-        this.noeuds = new ArrayList<Arbre>();
+        this.noeuds = new HashMap<>();
     }
 
     /**
      * permet de recuperer les noeuds
+     * @return
      */
-    public ArrayList<Arbre> getNoeuds() {
+    public HashMap<Arbre, String> getNoeuds() {
         return noeuds;
     }
 
-    /*  il va falloir creer notre propre split je pense*/
+    /**
+     *  creation de notre arbre a partir de l'appariement
+     */
     public void create_arbre(String arn) {
-        String a = (String) arn;
+        String a = arn;
         while (a.length() > 0) {
             if (a.charAt(0) == '-') {
-                this.noeuds.add(new Arbre());
+                this.noeuds.put(new Arbre(), "feuille");
                 a = a.replaceFirst(String.valueOf(a.charAt(0)), "");
             }
             else if (a.charAt(0) == '(') {
@@ -50,10 +53,10 @@ public class Arbre {
                 }
                 Arbre A = new Arbre();
                 if (s.equals("")){
-                    this.noeuds.add(A);
+                    this.noeuds.put(A,"sous-arbre");
                 }else {
                     A.create_arbre(s);
-                    this.noeuds.add(A);
+                    this.noeuds.put(A, "feuille");
                 }
             }
             else if (a.charAt(0) == ')') {
@@ -67,6 +70,19 @@ public class Arbre {
 
     public boolean isEmpty() {
         return this.noeuds.isEmpty();
+    }
 
+    public String get_appariement (){
+        String res = "";
+        for (Arbre a : this.noeuds.keySet()){
+            if (a.noeuds.values().equals("feuille")){
+                res +="-";
+            } else {
+                res +="(";
+                res+= a.get_appariement();
+                res +=")";
+            }
+        }
+        return res;
     }
 }

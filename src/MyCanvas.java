@@ -1,6 +1,6 @@
 import java.awt.*;
 
-class MyCanvas extends Canvas {
+/*class MyCanvas extends Canvas {
     private int width = 10;
     private int height = 10;
     private int X = 10;
@@ -58,4 +58,4 @@ class MyCanvas extends Canvas {
         draw(g, X, Y );
 
     }
-}
+}*/

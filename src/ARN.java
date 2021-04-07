@@ -1,3 +1,4 @@
+import java.io.File;
 
 public class ARN extends Affichage{
     private String sequence;
@@ -10,6 +11,17 @@ public class ARN extends Affichage{
      **/
     public ARN(String s, String a){
         this.appariement = a;
+        this.sequence = s;
+    }
+
+    /**
+     * constructeur
+     * @param a fichier Stockholm pour recuperer l'appariement
+     * @param s sequence de l'ARN
+     **/
+    public ARN(String s, File a){
+        Parser p = new Parser(a);
+        this.appariement = p.string;
         this.sequence = s;
     }
 
