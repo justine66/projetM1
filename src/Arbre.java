@@ -108,11 +108,5 @@ public class Arbre  {
         System.out.println("");
     }
 
-    /*public Arbre plus_grand_sous_arbre(Arbre arbre){
-        Arbre arbre = new Arbre();
-
-        for (int i = 0; i< min(this.))
-        return arbre;
-    }*/
 
 }
