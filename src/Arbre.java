@@ -1,20 +1,22 @@
-import java.util.HashMap;
 
-public class Arbre {
-    private HashMap<Arbre, String> noeuds;
+import java.util.*;
+
+public class Arbre  {
+    private LinkedHashMap<Arbre, String> noeuds;
 
     /**
      * constructeur
      */
     public Arbre() {
-        this.noeuds = new HashMap<>();
+        this.noeuds = new LinkedHashMap<Arbre, String>();
+
     }
 
     /**
      * permet de recuperer les noeuds
      * @return
      */
-    public HashMap<Arbre, String> getNoeuds() {
+    public LinkedHashMap<Arbre, String> getNoeuds() {
         return noeuds;
     }
 
@@ -32,7 +34,7 @@ public class Arbre {
                 int cpt = 1;
                 a = a.replaceFirst("\\(", "");
                 String s = "";
-                while (cpt > 0 || a.length() > 0) {
+                while (cpt != 0 ) {
                     if (a.charAt(0) == '(') {
                         s += '(';
                         a = a.replaceFirst("\\(", "");
@@ -56,13 +58,17 @@ public class Arbre {
                     this.noeuds.put(A,"sous-arbre");
                 }else {
                     A.create_arbre(s);
-                    this.noeuds.put(A, "feuille");
+                    this.noeuds.put(A, "sous-arbre");
                 }
             }
             else if (a.charAt(0) == ')') {
                 a = a.replaceFirst("\\)", "");
+                System.out.println("a : " + a);
+
 
             }
+
+
         }
 
     }
@@ -75,14 +81,32 @@ public class Arbre {
     public String get_appariement (){
         String res = "";
         for (Arbre a : this.noeuds.keySet()){
-            if (a.noeuds.values().equals("feuille")){
-                res +="-";
+            if (this.noeuds.get(a).equals("feuille")) {
+                res += "-";
             } else {
-                res +="(";
-                res+= a.get_appariement();
-                res +=")";
+                res += "(";
+                res += a.get_appariement();
+                res += ")";
             }
+
         }
         return res;
     }
+
+    public void affiche_arbre(){
+
+
+        for (Arbre arbre : this.noeuds.keySet()){
+            if (this.noeuds.get(arbre).equals("feuilles")) {
+                System.out.print(this.noeuds.get(arbre));
+            } else {
+                //System.out.print("test");
+                System.out.println(this.noeuds.get(arbre));
+                arbre.affiche_arbre();
+                System.out.println("fin sous-arbre");
+            }
+        }
+    }
+
+
 }
