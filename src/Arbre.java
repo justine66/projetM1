@@ -12,16 +12,13 @@ public class Arbre  {
 
     }
 
-    /**
-     * permet de recuperer les noeuds
-     * @return
-     */
+
     public LinkedHashMap<Arbre, String> getNoeuds() {
         return noeuds;
     }
 
     /**
-     *  creation de notre arbre a partir de l'appariement
+     *  creation de notre arbre à partir de l'appariement
      */
     public void create_arbre(String arn) {
         String a = arn;
@@ -73,11 +70,18 @@ public class Arbre  {
 
     }
 
-
+    /**
+     * test si l'arbre est vide
+     * @return true si l'arbre est vide
+     */
     public boolean isEmpty() {
         return this.noeuds.isEmpty();
     }
 
+    /**
+     * recupère l'appariement à partir de l'arbre
+     * @return un string correspondant à l'appariement
+     */
     public String get_appariement (){
         String res = "";
         for (Arbre a : this.noeuds.keySet()){
@@ -88,25 +92,27 @@ public class Arbre  {
                 res += a.get_appariement();
                 res += ")";
             }
-
         }
         return res;
     }
 
+    /**
+     * affiche les noeuds de l'arbre dans la console (n'affiche pas les sous-arbres)
+     */
     public void affiche_arbre(){
-
-
-        for (Arbre arbre : this.noeuds.keySet()){
-            if (this.noeuds.get(arbre).equals("feuilles")) {
-                System.out.print(this.noeuds.get(arbre));
-            } else {
-                //System.out.print("test");
-                System.out.println(this.noeuds.get(arbre));
-                arbre.affiche_arbre();
-                System.out.println("fin sous-arbre");
-            }
+        Iterator iterator = this.noeuds.entrySet().iterator();
+        while (iterator.hasNext()) {
+            HashMap.Entry mapentry = (HashMap.Entry) iterator.next();
+            System.out.print(mapentry.getValue() + " | ");
         }
+        System.out.println("");
     }
 
+    /*public Arbre plus_grand_sous_arbre(Arbre arbre){
+        Arbre arbre = new Arbre();
+
+        for (int i = 0; i< min(this.))
+        return arbre;
+    }*/
 
 }

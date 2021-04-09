@@ -14,22 +14,32 @@ public class test  {
         /* test creation arn */
         System.out.println("test creation arn");
         ARN arn1 = new ARN("AAUU", "(())");
-        ARN arn2 = new ARN("AAAU", "(--)");
+        ARN arn2 = new ARN("AAU", "(-)");
         ARN arn3 = new ARN("AAAU", "-(-)");
         ARN arn4 = new ARN("AAAU", "-(-())--");
 
         /* test de la methode is_appiered(a)*/
-        System.out.println("test de la methode is_appiered(a)");
+        System.out.println("\ntest de la methode is_appiered(a)");
         System.out.println(arn1.is_appiered(arn2.getAppariement()));
         System.out.println(arn1.is_appiered(arn1.getAppariement()));
 
-        /* test de la methode is_appiered(a, s)*/
-        System.out.println("test de la methode is_appiered(a, s)");
-        System.out.println(arn1.is_appiered(arn2.getAppariement(), arn2.getSequence()));
-        System.out.println(arn1.is_appiered(arn1.getAppariement(), arn1.getSequence()));
+        /* test de la methode is_appiered(arn)*/
+        System.out.println("\ntest de la methode is_appiered(arn)");
+        System.out.println(arn1.is_appiered(arn2));
+        System.out.println(arn1.is_appiered(arn1));
+
+        /* test de la methode is_motif(a)*/
+        System.out.println("\ntest de la methode is_motif(a)");
+        System.out.println(arn1.is_motif("-----()()"));
+        System.out.println(arn1.is_motif("--(())--(-(--))"));
+
+        /* test de la methode is_motif(arn)*/
+        System.out.println("\ntest de la methode is_motif(arn)");
+        System.out.println(arn3.is_motif(arn4));
+        System.out.println(arn2.is_motif(arn3));
 
         /* test de la creation d'arbre */
-        System.out.println("test creation arbre");
+        System.out.println("\ntest creation arbre");
         Arbre A1 = new Arbre();
         A1.create_arbre(arn1.getAppariement());
         Arbre A2 = new Arbre();
@@ -39,8 +49,8 @@ public class test  {
         Arbre A4 = new Arbre();
         A4.create_arbre(arn4.getAppariement());
 
-        /* test de la recuperation de l'appariement a partir d'un arbre */
-        System.out.println("test recuperation appariement a partir d'un arbre");
+        /* test de la recuperation de l'appariement à partir d'un arbre */
+        System.out.println("\ntest recuperation appariement a partir d'un arbre");
         System.out.println(arn1.is_appiered(A1.get_appariement()));
         System.out.print("arn1 :");
         System.out.println(arn1.getAppariement());
@@ -63,18 +73,19 @@ public class test  {
         System.out.println(A4.get_appariement());
 
         /* test affichage arbre*/
-        System.out.println("test affichage arbre");
+        System.out.println("\ntest affichage arbre");
         System.out.println("A4 :");
-        Iterator iterator = A4.getNoeuds().entrySet().iterator();
-        while (iterator.hasNext()) {
-            HashMap.Entry mapentry = (HashMap.Entry) iterator.next();
-            System.out.println("clé: " + mapentry.getKey()
-                    + " | valeur: " + mapentry.getValue());
-        }
-        //A4.affiche_arbre();
+        A4.affiche_arbre();
+
+        /* test plus grand sous-arbre commun */
+        System.out.println("\ntest plus grand sous-arbre commun");
+        Arbre a = arn2.plus_grand_sous_arbre(arn3);
+        a.affiche_arbre();
+        Arbre a2 = arn1.plus_grand_sous_arbre(arn3);
+        a2.affiche_arbre();
 
         /* test du parser*/
-        System.out.println("test parser");
+        System.out.println("\ntest parser");
         File F = new File("./Stockholm.txt");
         Parser P = new Parser(F);
         System.out.println(P.string); //on teste pour savoir si ya une tabulation ou un espace avant le string que l'on cherche
