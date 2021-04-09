@@ -48,11 +48,11 @@ public class Affichage extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent e) {
 
-        ARN arn1 = new ARN("AAUU", "----");
+        /*ARN arn1 = new ARN("AAUU", "----");
         Arbre A1 = new Arbre();
         A1.create_arbre(arn1.getAppariement());
-        Worker worker = new Worker( this.conteneur, A1);
-        worker.execute();
+        Worker worker = new Worker();
+        worker.execute();*/
     }
 
 

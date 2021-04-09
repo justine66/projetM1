@@ -1,53 +1,54 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.File;
 
 public class User extends JDialog {
     private JPanel contentPane;
-    private JButton buttonOK;
-    private JButton buttonCancel;
-    private JTextField textField1;
+    private JTextField sequence;
+    private JTextField file;
+    private JTextField appariement;
+    private JButton ajouterButton;
+    private JPanel JPane1;
+    private JLabel message;
 
     public User() {
-        setContentPane(contentPane);
+        setTitle("Projet M1 BIBS");
+        setContentPane(JPane1);
         setModal(true);
-        getRootPane().setDefaultButton(buttonOK);
 
-        buttonOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onOK();
-            }
+        ajouterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { ajouter(); }
         });
-
-        buttonCancel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        });
-
-        // call onCancel() when cross is clicked
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                onCancel();
-            }
-        });
-
-        // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    private void onOK() {
-        // add your code here
-        dispose();
+    public void ajouter(){
+        String seq = sequence.getText();
+        String ap = appariement.getText();
+        String fichier = file.getText();
+        System.out.println(seq.length());
+        System.out.println(ap.length());
+        System.out.println(fichier.length());
+        if (seq.length() == 0){
+            add_message("veuillez remplir le champ sequence");
+        }
+        else if (ap.length() == 0 && fichier.length() != 0){
+            File f = new File(fichier);
+            ARN arn = new ARN(seq, f);
+            Worker worker = new Worker(arn);
+            worker.execute();
+        }else if (ap.length() != 0 && fichier.length() == 0){
+            ARN arn = new ARN(seq, ap);
+            Worker worker = new Worker(arn);
+            worker.execute();
+        }else{
+            add_message("veuillez remplir le champ appariement ou fichier");
+        }
+
     }
 
-    private void onCancel() {
-        // add your code here if necessary
-        dispose();
+    private void add_message(String message) {
+        this.message.setText(message);
     }
 
     public static void main(String[] args) {
