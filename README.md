@@ -18,6 +18,8 @@ seance 3 :
 - creation de la classe Parser pour recupérer l'appariement a partir d'un fichier Stockholm
 - creation de la classe Worker(A modifier)
     
+pb recontrés :
+- pb de redimension de taille de fenetre
 
 commentaires : 
 
