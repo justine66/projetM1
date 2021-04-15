@@ -1,14 +1,17 @@
 import javax.swing.*;
-import java.awt.*;
 
 public class Worker extends SwingWorker<Void, Void> {
 
-    private ARN arn;
-    public Worker(ARN   arn){
-        this.arn = arn;
+    private JLabel jlabel;
+    private String message;
+
+    public Worker(String m, JLabel j){
+        this.message = m;
+        this.jlabel = j;
     }
     @Override
     protected Void doInBackground() throws Exception {
+        jlabel.setText(message);
         return null;
     }
 
