@@ -27,7 +27,7 @@ public class Arbre  {
                 this.noeuds.put(new Arbre(), "feuille");
                 a = a.replaceFirst(String.valueOf(a.charAt(0)), "");
             }
-            else if (a.charAt(0) == '(') {
+             else if (a.charAt(0) == '(') {
                 int cpt = 1;
                 a = a.replaceFirst("\\(", "");
                 String s = "";

@@ -13,8 +13,8 @@ public class test  {
     public static void main(String[] args) {
         /* test creation arn */
         System.out.println("test creation arn");
-        ARN arn1 = new ARN("AAUU", "(())");
-        ARN arn2 = new ARN("AAU", "(-)");
+        ARN arn1 = new ARN("AAUU", "-(((--)-))");
+        ARN arn2 = new ARN("AAU", "-(((---)))");
         ARN arn3 = new ARN("AAAU", "-(-)");
         ARN arn4 = new ARN("AAAU", "-(-())--");
 
@@ -37,6 +37,10 @@ public class test  {
         System.out.println("\ntest de la methode is_motif(arn)");
         System.out.println(arn3.is_motif(arn4));
         System.out.println(arn2.is_motif(arn3));
+
+        /* test de la methode plusgrandsousarbre(arn)*/
+        System.out.println("\ntest de la methode plusgrand sousarbre(arn)");
+        System.out.println(arn1.plus_grand_sous_arbre(arn2));
 
         /* test de la creation d'arbre */
         System.out.println("\ntest creation arbre");
@@ -77,12 +81,12 @@ public class test  {
         System.out.println("A4 :");
         A4.affiche_arbre();
 
-        /* test plus grand sous-arbre commun */
+        /* test plus grand sous-arbre commun
         System.out.println("\ntest plus grand sous-arbre commun");
         Arbre a = arn2.plus_grand_sous_arbre(arn3);
         a.affiche_arbre();
         Arbre a2 = arn1.plus_grand_sous_arbre(arn3);
-        a2.affiche_arbre();
+        a2.affiche_arbre();*/
 
         /* test du parser*/
         System.out.println("\ntest parser");

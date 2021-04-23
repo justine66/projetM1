@@ -79,7 +79,7 @@ public class ARN extends Affichage{
         return arn.appariement.contains(this.appariement) && arn.sequence.contains(this.sequence);
     }
 
-    public Arbre plus_grand_sous_arbre(ARN arn){
+    public String plus_grand_sous_arbre(ARN arn){
         Arbre arbre = new Arbre();
         int min;
         String res = "";
@@ -111,6 +111,6 @@ public class ARN extends Affichage{
             //message a afficher dans la fenetre utilisateur
             System.out.println("pas de sous-arbres communs possible");
         }
-        return arbre;
+        return res;
     }
 }
