@@ -20,6 +20,7 @@ seance 3 :
     
 pb recontrés :
 - pb de redimension de taille de fenetre
+-plus_grand_sous_arbre (ne donne pas un sous-arbre correct)
 
 commentaires : 
 
