@@ -2,16 +2,17 @@ import javax.swing.*;
 
 public class Worker extends SwingWorker<Void, Void> {
 
-    private JLabel jlabel;
+    private JTextArea jtext;
     private String message;
 
-    public Worker(String m, JLabel j){
+    public Worker(String m, JTextArea j){
         this.message = m;
-        this.jlabel = j;
+        this.jtext = j;
     }
+
     @Override
     protected Void doInBackground() throws Exception {
-        jlabel.setText(message);
+        jtext.replaceRange(message,0, jtext.getText().length());
         return null;
     }
 

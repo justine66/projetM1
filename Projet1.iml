@@ -10,6 +10,6 @@
     <orderEntry type="library" name="java" level="project" />
     <orderEntry type="library" name="commons-io-2.8" level="project" />
     <orderEntry type="library" name="jgraphx" level="project" />
-    <orderEntry type="library" name="commons-lang3-3.12" level="project" />
+    <orderEntry type="library" name="common-lang3" level="project" />
   </component>
 </module>

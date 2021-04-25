@@ -14,18 +14,27 @@ public class User extends JDialog {
     private JTextField file;
     private JTextField appariement;
     private JButton ajouterButton;
-    private JLabel message;
-    private JLabel seq1;
-    private JLabel ap1;
-    private JLabel seq2;
-    private JLabel ap2;
+    private JTextArea message;
+    private JTextArea seq1;
+    private JTextArea ap1;
+    private JTextArea seq2;
+    private JTextArea ap2;
     private JButton delete1;
     private JButton delete2;
+    private JButton trouverLePlusGrandButton;
+    private JPanel jpan3;
+    private JTextArea textPane1;
 
     public User() {
         setTitle("Projet M1 BIBS");
         setContentPane(JPane1);
         setModal(true);
+        message.setOpaque(false);
+        seq1.setOpaque(false);
+        ap1.setOpaque(false);
+        seq2.setOpaque(false);
+        ap2.setOpaque(false);
+        textPane1.setOpaque(false);
 
         ajouterButton.addActionListener(new ActionListener() {
             @Override
@@ -39,6 +48,26 @@ public class User extends JDialog {
         delete2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) { delete(2); }
+        });
+        trouverLePlusGrandButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ARN arn1 = null;
+                try {
+                    arn1 = new ARN(seq1.getText(),ap1.getText());
+                } catch (Exception exception) {
+                    Worker w = new Worker("", new JTextArea());
+                    w.execute();
+                }
+                ARN arn2 = null;
+                try {
+                    arn2 = new ARN(seq2.getText(),ap2.getText());
+                } catch (Exception exception) {
+                    Worker w = new Worker(exception.getMessage(),textPane1);
+                    w.execute();
+                }
+                plus_grand_sous_arbre(arn1,arn2);
+            }
         });
 
 
@@ -74,7 +103,13 @@ public class User extends JDialog {
         }
         else if (ap.length() == 0 && fichier.length() != 0){
             File f = new File(fichier);
-            ARN arn = new ARN(seq, f);
+            ARN arn = null;
+            try {
+                arn = new ARN(seq, f);
+            } catch (Exception e) {
+                Worker worker = new Worker(e.getMessage(), this.message);
+                worker.execute();
+            }
             if (this.ap1.getText().equals("") || this.ap2.getText().equals("")) {
                 if (this.ap1.getText().equals("")) {
                     Worker worker = new Worker(arn.getAppariement(), this.ap1);
@@ -92,7 +127,13 @@ public class User extends JDialog {
                 worker.execute();
             }
         }else if (ap.length() != 0 && fichier.length() == 0){
-            ARN arn = new ARN(seq, ap);
+            ARN arn = null;
+            try {
+                arn = new ARN(seq, ap);
+            } catch (Exception e) {
+                Worker worker = new Worker(e.getMessage(), this.message);
+                worker.execute();
+            }
             if (this.ap1.getText().equals("") || this.ap2.getText().equals("")) {
                 if (this.ap1.getText().equals("")) {
                     Worker worker = new Worker(arn.getAppariement(), this.ap1);
@@ -124,6 +165,10 @@ public class User extends JDialog {
         System.out.println(max(ap1.getWidth(),ap2.getWidth())> getWidth()- (delete1.getWidth()));
         System.out.println(ap2.getSize());*/
     }
+    private void plus_grand_sous_arbre(ARN arn1, ARN arn2){
+        Worker w = new Worker(arn1.plus_grand_sous_arbre(arn2), textPane1);
+        w.execute();
+    }
 
 
     public static void main(String[] args) {
@@ -133,7 +178,4 @@ public class User extends JDialog {
         System.out.println(dialog.getWidth());
         System.exit(0);
     }
-
-
-
 }

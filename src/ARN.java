@@ -1,6 +1,7 @@
 import java.io.File;
 import java.util.Objects;
-import java.lang.StringUtils;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class ARN extends Affichage{
     private String sequence;
@@ -12,11 +13,13 @@ public class ARN extends Affichage{
      * @param a appariement des bases
      * @param s sequence de l'ARN
      **/
-    public ARN(String s, String a){
+    public ARN(String s, String a) throws Exception {
         this.sequence = s;
         if (is_correct(a)){
             this.appariement = a;
             arbre.create_arbre(appariement);
+        } else {
+            throw new Exception("appariement incorrect");
         }
     }
 
@@ -25,15 +28,14 @@ public class ARN extends Affichage{
      * @param a fichier Stockholm pour recuperer l'appariement
      * @param s sequence de l'ARN
      **/
-    public ARN(String s, File a){
+    public ARN(String s, File a) throws Exception {
         this.sequence = s;
         Parser p = new Parser(a);
-        try {
-            is_correct(p.string);
+        if (is_correct(p.string)){
             this.appariement = p.string;
             arbre.create_arbre(appariement);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else {
+            throw new Exception("appariement incorrect");
         }
 
     }
@@ -52,8 +54,8 @@ public class ARN extends Affichage{
      * @return true si l'appariement est un arbre correct
      */
     public static boolean is_correct(String a) {
-        int count1 = StringUtils.countOccurrencesOf("elephant", "e");
-        int count2 = StringUtils.countOccurrencesOf("elephant", "e");
+        int count1 = StringUtils.countMatches(a, "(");
+        int count2 = StringUtils.countMatches(a, ")");
         if (Objects.equals(count1, count2)){
             String s = a.replace("-","");
             while (!s.isEmpty()){
@@ -128,7 +130,6 @@ public class ARN extends Affichage{
                                 res = s;
                             }
                         }
-                       // System.out.println(res);
                     }
                 }
             } else {
@@ -137,11 +138,10 @@ public class ARN extends Affichage{
                     for (int j = i + 1; j < min; j++) {
                         String s = arn.appariement.substring(i, j);
                         if(is_correct(s)){
-                            if (arn.appariement.contains(s) && s.length() > res.length()) {
+                            if (this.appariement.contains(s) && s.length() > res.length()) {
                                 res = s;
                             }
                         }
-                        //System.out.println(res);
                     }
                 }
             }

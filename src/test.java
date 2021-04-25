@@ -7,17 +7,38 @@ import com.mxgraph.view.mxGraph;
 public class test  {
 
     public static void main(String[] args) {
-        /* test creation arn */
+        /* test creation arn*/
         System.out.println("test creation arn");
-        ARN arn0 = new ARN("AAAA",")))(((");
-        ARN arn1 = new ARN("AAUU", "-(((--)-))");
-        ARN arn2 = new ARN("AAU", "-(((---)))");
-        ARN arn3 = new ARN("AAAU", "-(-)");
-        ARN arn4 = new ARN("AAAU", "-(-())--");
+       // ARN arn0 = new ARN("AAAA",")))(((");
+        ARN arn1 = null;
+        try {
+            arn1 = new ARN("AAUU", "-(((--)-))");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        ARN arn2 = null;
+        try {
+            arn2 = new ARN("AAU", "-(((---)))");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        ARN arn3 = null;
+        try {
+            arn3 = new ARN("AAAU", "-(-)");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        ARN arn4 = null;
+        try {
+            arn4 = new ARN("AAAU", "-(-())--");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         /* test de la methode is_correct(a)*/
         System.out.println("\ntest de la methode is_correct(a)");
-        System.out.println(ARN.is_correct(arn0.getAppariement()));
+        System.out.println(ARN.is_correct(")))((("));
+        System.out.println(ARN.is_correct("-(((--)-))"));
 
         /* test de la methode is_appiered(a)*/
         System.out.println("\ntest de la methode is_appiered(a)");
@@ -41,7 +62,7 @@ public class test  {
 
 
 
-        /* test de la creation d'arbre */
+        /* test de la creation d'arbre*/
         System.out.println("\ntest creation arbre");
         Arbre A1 = new Arbre();
         A1.create_arbre(arn1.getAppariement());
@@ -52,7 +73,7 @@ public class test  {
         Arbre A4 = new Arbre();
         A4.create_arbre(arn4.getAppariement());
 
-        /* test de la recuperation de l'appariement à partir d'un arbre */
+        /* test de la recuperation de l'appariement à partir d'un arbre*/
         System.out.println("\ntest recuperation appariement a partir d'un arbre");
         System.out.println(arn1.is_appiered(A1.get_appariement()));
         System.out.print("arn1 :");
@@ -82,9 +103,9 @@ public class test  {
 
         /* test plus grand sous-arbre commun*/
         System.out.println("\ntest plus grand sous-arbre commun");
-        System.out.println(arn1.plus_grand_sous_arbre(arn2));
-        System.out.println(arn2.plus_grand_sous_arbre(arn3));
-        System.out.println(arn1.plus_grand_sous_arbre(arn3));
+        System.out.println("test arn1, arn2 : "+ arn1.plus_grand_sous_arbre(arn2));
+        System.out.println("test arn3, arn2 : "+ arn2.plus_grand_sous_arbre(arn3));
+        System.out.println("test arn1, arn3 : "+ arn1.plus_grand_sous_arbre(arn3));
 
 
         /* test du parser*/
