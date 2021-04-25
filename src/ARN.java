@@ -1,4 +1,6 @@
 import java.io.File;
+import java.util.Objects;
+import java.lang.StringUtils;
 
 public class ARN extends Affichage{
     private String sequence;
@@ -11,9 +13,11 @@ public class ARN extends Affichage{
      * @param s sequence de l'ARN
      **/
     public ARN(String s, String a){
-        this.appariement = a;
         this.sequence = s;
-        arbre.create_arbre(appariement);
+        if (is_correct(a)){
+            this.appariement = a;
+            arbre.create_arbre(appariement);
+        }
     }
 
     /**
@@ -22,12 +26,17 @@ public class ARN extends Affichage{
      * @param s sequence de l'ARN
      **/
     public ARN(String s, File a){
-        Parser p = new Parser(a);
-        this.appariement = p.string;
         this.sequence = s;
-        arbre.create_arbre(appariement);
-    }
+        Parser p = new Parser(a);
+        try {
+            is_correct(p.string);
+            this.appariement = p.string;
+            arbre.create_arbre(appariement);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+    }
 
     public String getAppariement() {
         return appariement;
@@ -35,6 +44,28 @@ public class ARN extends Affichage{
 
     public String getSequence() {
         return sequence;
+    }
+
+    /**
+     *
+     * @param a sequence d'appariement à vérifier
+     * @return true si l'appariement est un arbre correct
+     */
+    public static boolean is_correct(String a) {
+        int count1 = StringUtils.countOccurrencesOf("elephant", "e");
+        int count2 = StringUtils.countOccurrencesOf("elephant", "e");
+        if (Objects.equals(count1, count2)){
+            String s = a.replace("-","");
+            while (!s.isEmpty()){
+                if(s.indexOf("(")>(s.indexOf(")"))){
+                    return false;
+                } else {
+                    s = s.replaceFirst("\\(","");
+                    s = s.replaceFirst("\\)","");
+                }
+            }
+            return true;
+        }else return false;
     }
 
     /**
@@ -80,37 +111,41 @@ public class ARN extends Affichage{
     }
 
     public String plus_grand_sous_arbre(ARN arn){
-        Arbre arbre = new Arbre();
-        int min;
-        String res = "";
-        if (this.appariement.length() < arn.appariement.length()){
-            min = this.appariement.length();
-            for (int i = 0; i< min; i++){
-                for (int j = i+1; j< min+1; j++){
-                    String s = this.appariement.substring(i,j);
-                    if (arn.appariement.contains(s) && s.length()> res.length()){
-                        res = s;
-                    }
-                }
-            }
+        if (this.is_motif(arn)){
+            return this.appariement;
+        }else if (arn.is_motif(this)){
+            return arn.appariement;
         }else {
-            min = arn.appariement.length();
-            for (int i = 0; i< min-1; i++){
-                for (int j = i+1; j< min; j++){
-                    String s = arn.appariement.substring(i,j);
-                    if (this.appariement.contains(s) && s.length()> res.length()){
-                        res = s;
+            int min;
+            String res = "";
+            if (this.appariement.length() < arn.appariement.length()) {
+                min = this.appariement.length();
+                for (int i = 0; i < min; i++) {
+                    for (int j = i + 1; j < min + 1; j++) {
+                        String s = this.appariement.substring(i, j);
+                        if(is_correct(s)){
+                            if (arn.appariement.contains(s) && s.length() > res.length()) {
+                                res = s;
+                            }
+                        }
+                       // System.out.println(res);
+                    }
+                }
+            } else {
+                min = arn.appariement.length();
+                for (int i = 0; i < min - 1; i++) {
+                    for (int j = i + 1; j < min; j++) {
+                        String s = arn.appariement.substring(i, j);
+                        if(is_correct(s)){
+                            if (arn.appariement.contains(s) && s.length() > res.length()) {
+                                res = s;
+                            }
+                        }
+                        //System.out.println(res);
                     }
                 }
             }
+            return res;
         }
-
-        try {
-            arbre.create_arbre(res);
-        }catch (Exception e){
-            //message a afficher dans la fenetre utilisateur
-            System.out.println("pas de sous-arbres communs possible");
-        }
-        return res;
     }
 }

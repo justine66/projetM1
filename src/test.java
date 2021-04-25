@@ -1,9 +1,5 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.Graphics;
 import java.io.File;
-import java.util.HashMap;
-import java.util.Iterator;
+
 
 import com.mxgraph.view.mxGraph;
 
@@ -13,10 +9,15 @@ public class test  {
     public static void main(String[] args) {
         /* test creation arn */
         System.out.println("test creation arn");
+        ARN arn0 = new ARN("AAAA",")))(((");
         ARN arn1 = new ARN("AAUU", "-(((--)-))");
         ARN arn2 = new ARN("AAU", "-(((---)))");
         ARN arn3 = new ARN("AAAU", "-(-)");
         ARN arn4 = new ARN("AAAU", "-(-())--");
+
+        /* test de la methode is_correct(a)*/
+        System.out.println("\ntest de la methode is_correct(a)");
+        System.out.println(ARN.is_correct(arn0.getAppariement()));
 
         /* test de la methode is_appiered(a)*/
         System.out.println("\ntest de la methode is_appiered(a)");
@@ -38,9 +39,7 @@ public class test  {
         System.out.println(arn3.is_motif(arn4));
         System.out.println(arn2.is_motif(arn3));
 
-        /* test de la methode plusgrandsousarbre(arn)*/
-        System.out.println("\ntest de la methode plusgrand sousarbre(arn)");
-        System.out.println(arn1.plus_grand_sous_arbre(arn2));
+
 
         /* test de la creation d'arbre */
         System.out.println("\ntest creation arbre");
@@ -81,12 +80,12 @@ public class test  {
         System.out.println("A4 :");
         A4.affiche_arbre();
 
-        /* test plus grand sous-arbre commun
+        /* test plus grand sous-arbre commun*/
         System.out.println("\ntest plus grand sous-arbre commun");
-        Arbre a = arn2.plus_grand_sous_arbre(arn3);
-        a.affiche_arbre();
-        Arbre a2 = arn1.plus_grand_sous_arbre(arn3);
-        a2.affiche_arbre();*/
+        System.out.println(arn1.plus_grand_sous_arbre(arn2));
+        System.out.println(arn2.plus_grand_sous_arbre(arn3));
+        System.out.println(arn1.plus_grand_sous_arbre(arn3));
+
 
         /* test du parser*/
         System.out.println("\ntest parser");
@@ -94,7 +93,7 @@ public class test  {
         Parser P = new Parser(F);
         System.out.println(P.string); //on teste pour savoir si ya une tabulation ou un espace avant le string que l'on cherche
 
-        /* test de JgraphX */
+        /* test de JgraphX
         mxGraph graph = new mxGraph();
         Object parent = graph.getDefaultParent();
         graph.getModel().beginUpdate();
@@ -105,6 +104,8 @@ public class test  {
         } finally {
             graph.getModel().endUpdate();
         }
+
+         */
 
     }
 }
