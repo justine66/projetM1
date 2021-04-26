@@ -95,8 +95,7 @@ public class User extends JDialog {
         String seq = sequence.getText();
         String ap = appariement.getText();
         String fichier = file.getText();
-        Worker m = new Worker("", this.message);
-        m.execute();
+
         if (seq.length() == 0){
             Worker w = new Worker("veuillez remplir le champ sequence", this.message);
             w.execute();
@@ -121,6 +120,10 @@ public class User extends JDialog {
                     worker.execute();
                     Worker worker1 = new Worker(arn.getSequence(), this.seq2);
                     worker1.execute();
+                }
+                if (max(ap1.getText().length(),ap2.getText().length())> 10 )
+                {
+                    setSize(max(getWidth() + ap1.getWidth(), getWidth() + ap2.getWidth()), getHeight());
                 }
             } else {
                 Worker worker = new Worker("veuillez reinitialiser arn 1 ou 2", this.message);
@@ -160,11 +163,17 @@ public class User extends JDialog {
             Worker w = new Worker("veuillez remplir le champ appariement ou fichier", this.message);
             w.execute();
         }
-        System.out.println("$$$");/*
+        /*System.out.println("$$$");
         System.out.println(contentPane3.getWidth());
         System.out.println(max(ap1.getWidth(),ap2.getWidth())> getWidth()- (delete1.getWidth()));
         System.out.println(ap2.getSize());*/
     }
+
+    /**
+     * affiche le plus grand sous-arbre commun de 2 arn
+     * @param arn1
+     * @param arn2
+     */
     public void plus_grand_sous_arbre(ARN arn1, ARN arn2){
         Worker w = new Worker(arn1.plus_grand_sous_arbre(arn2), textPane1);
         w.execute();
@@ -175,7 +184,7 @@ public class User extends JDialog {
         User dialog = new User();
         dialog.pack();
         dialog.setVisible(true);
-        System.out.println(dialog.getWidth());
+        //System.out.println(dialog.getWidth());
         System.exit(0);
     }
 }

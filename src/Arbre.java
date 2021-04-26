@@ -60,14 +60,8 @@ public class Arbre  {
             }
             else if (a.charAt(0) == ')') {
                 a = a.replaceFirst("\\)", "");
-                System.out.println("a : " + a);
-
-
             }
-
-
         }
-
     }
 
     /**
