@@ -17,13 +17,19 @@ seance 2 :
 seance 3 :
 - creation de la classe Parser pour recupérer l'appariement a partir d'un fichier Stockholm
 - creation de la classe Worker(A modifier)
+
+seances suivantes : 
+- creation de la classe user et du fichier user.form (pour faire la partie graphique, remplace la classe Affichage)
+- suppression de la classe Affichage
+- modification de la classe Worker
+- modification de la classe ARN pour que la methode plus_grand_sous_arbre retourne un sous-arbre correct + creation de la methode is_correct
     
 pb recontrés :
 - pb de redimension de taille de fenetre
--plus_grand_sous_arbre (ne donne pas un sous-arbre correct)
+- plus_grand_sous_arbre (ne donne pas un sous-arbre correct)
 
 commentaires : 
 
- - on considère qu'il y a qu'un appariement possible pour le moment mais on pourra rreflecir pour travailler avec une liste d'appariement par la suite
- - pour verifié si les structures 2ndaires sont les meme (methode is_appiered) on considere que les deux brins sont de meme longueur mais on pourra le modifier pour qu'il cherche dans une sous partie d'un brin plus grand
+ - on considère qu'il y a qu'un appariement possible pour le moment mais on pourra reflechir pour travailler avec une liste d'appariement par la suite
+ - pour verifié si les structures 2ndaires sont les meme (methode is_appiered) on considere que les deux brins sont de meme longueur mais on pourra le modifier pour qu'il cherche dans une sous partie d'un brin plus grand (methode is_motif)
  - pour afficher l'arbre utiliser une librairie qui le fait
