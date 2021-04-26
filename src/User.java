@@ -95,8 +95,8 @@ public class User extends JDialog {
         String seq = sequence.getText();
         String ap = appariement.getText();
         String fichier = file.getText();
-        Worker w = new Worker("", this.message);
-        w.execute();
+        Worker w1 = new Worker("", this.message);
+        w1.execute();
         if (seq.length() == 0){
             Worker w = new Worker("veuillez remplir le champ sequence", this.message);
             w.execute();
@@ -122,10 +122,6 @@ public class User extends JDialog {
                     Worker worker1 = new Worker(arn.getSequence(), this.seq2);
                     worker1.execute();
                 }
-                if (max(ap1.getText().length(),ap2.getText().length())> 10 )
-                {
-                    setSize(max(getWidth() + ap1.getWidth(), getWidth() + ap2.getWidth()), getHeight());
-                }
             } else {
                 Worker worker = new Worker("veuillez reinitialiser arn 1 ou 2", this.message);
                 worker.execute();
@@ -149,10 +145,6 @@ public class User extends JDialog {
                     worker.execute();
                     Worker worker1 = new Worker(arn.getSequence(), this.seq2);
                     worker1.execute();
-                }
-                if (max(ap1.getText().length(),ap2.getText().length())> 10 )
-                {
-                    setSize(max(getWidth() + ap1.getWidth(), getWidth() + ap2.getWidth()), getHeight());
                 }
             } else {
                 Worker worker = new Worker("veuillez reinitialiser arn 1 ou 2", this.message);

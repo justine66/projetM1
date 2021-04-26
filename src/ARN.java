@@ -49,7 +49,7 @@ public class ARN {
     }
 
     /**
-     *
+     * vérifie si l'appariement est un arbre correct
      * @param a sequence d'appariement à vérifier
      * @return true si l'appariement est un arbre correct
      */
@@ -95,7 +95,7 @@ public class ARN {
     public boolean equals (ARN arn) { return is_appiered(arn); }
 
     /**
-     *
+     * teste si this est contenue dans arn
      * @param a sequence d'appariement à comparer avec le this.appariement
      * @return true si this.appariement est un motif de a
      */
@@ -104,7 +104,7 @@ public class ARN {
     }
 
     /**
-     *
+     * teste si this est contenue dans arn
      * @param arn arn à comparer avec this
      * @return true si this est un motif de arn
      */
@@ -112,6 +112,11 @@ public class ARN {
         return arn.appariement.contains(this.appariement) && arn.sequence.contains(this.sequence);
     }
 
+    /**
+     * recupère le plus grand sous-arbre commun entre this et arn
+     * @param arn
+     * @return un string avec l'appariement du plus grand sous-arbre commun
+     */
     public String plus_grand_sous_arbre(ARN arn){
         if (this.is_motif(arn)){
             return this.appariement;
