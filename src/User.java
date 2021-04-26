@@ -95,7 +95,8 @@ public class User extends JDialog {
         String seq = sequence.getText();
         String ap = appariement.getText();
         String fichier = file.getText();
-
+        Worker w = new Worker("", this.message);
+        w.execute();
         if (seq.length() == 0){
             Worker w = new Worker("veuillez remplir le champ sequence", this.message);
             w.execute();
