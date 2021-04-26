@@ -3,7 +3,7 @@ import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class ARN extends Affichage{
+public class ARN {
     private String sequence;
     private String appariement;
     private Arbre arbre = new Arbre() ;

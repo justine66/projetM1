@@ -73,7 +73,7 @@ public class User extends JDialog {
 
     }
 
-    private void delete(int i) {
+    public void delete(int i) {
         if (i == 1){
             Worker w = new Worker("", this.ap1);
             w.execute();
@@ -165,7 +165,7 @@ public class User extends JDialog {
         System.out.println(max(ap1.getWidth(),ap2.getWidth())> getWidth()- (delete1.getWidth()));
         System.out.println(ap2.getSize());*/
     }
-    private void plus_grand_sous_arbre(ARN arn1, ARN arn2){
+    public void plus_grand_sous_arbre(ARN arn1, ARN arn2){
         Worker w = new Worker(arn1.plus_grand_sous_arbre(arn2), textPane1);
         w.execute();
     }

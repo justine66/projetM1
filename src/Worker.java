@@ -15,13 +15,5 @@ public class Worker extends SwingWorker<Void, Void> {
         jtext.replaceRange(message,0, jtext.getText().length());
         return null;
     }
-
-
-    public void process(){
-
-    }
-    public void done (){
-
-    }
 }
 
